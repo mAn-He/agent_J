@@ -1,0 +1,14 @@
+requirements.txt
+Core autogen libraries
+pyautogen
+autogen-agentchat
+autogen-ext
+
+For Gemini support via OpenAI extension
+autogen-ext[openai]
+
+For better console output
+rich
+
+For running async code in some environments
+nest-asyncio
