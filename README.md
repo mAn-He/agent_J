@@ -21,41 +21,44 @@ graph TD
         A[👤 User] -- "1. Provides a single research idea" --> B;
     end
 
-    subgraph "Orchestration Engine (Jarvis Core)"
-        B(main.py) -- "2. Initiates the process" --> C{AdvancedAIPlusXSystem};
-        C -- "3. Assembles and manages the AI team" --> D[Team of 10 AI Agents];
+    subgraph "System Core & Orchestration"
+        B(main.py) -- "2. Gets user_idea & API_KEY" --> C{AdvancedAIPlusXSystem};
+        C -- "3. Initializes AI Agents & Helper Classes (PrettyPrinter, ResultSaver)" --> D[RoundRobinGroupChat];
+        D -- "Manages interactions of 10 AI Agents" --> E[Sequential Agent Pipeline];
     end
 
-    subgraph "Sequential Analysis & Refinement Pipeline"
-        D -- "4. Idea is passed through the agent pipeline" --> E(🔍 **Domain Analysis**);
-        E --> F(👨‍🏫 **Idea Refinement**);
-        F --> G(✏️ **Question Optimization**);
-        G --> H(🤖 **Technical Design**);
-        H --> I(📚 **Trend Analysis**);
-        I --> J(⚖️ **Feasibility Verdict**);
-        J --> K(🔧 **Strategy Enhancement**);
-        K --> L(🎯 **Topic Recommendation**);
-        L --> M(👨‍🏫 **Final Review**);
-        M --> N(🛠️ **Resource Packaging**);
+    subgraph "AI Agent Pipeline (Iterative Refinement)"
+        E -- "Initial Task (user_idea)" --> AG1(🔍 Domain Classifier);
+        AG1 -- "Output" --> AG2(👨‍🏫 Senior Researcher);
+        AG2 -- "Output" --> AG3(✏️ Prompt Engineer);
+        AG3 -- "Output" --> AG4(🤖 AI Specialist);
+        AG4 -- "Output" --> AG5(📚 Research Trend Analyst);
+        AG5 -- "Output" --> AG6(⚖️ Feasibility Evaluator);
+        AG6 -- "Output" --> AG7(🔧 Improvement Strategist);
+        AG7 -- "Output" --> AG8(🎯 Topic Recommender);
+        AG8 -- "Output" --> AG9(👨‍🏫 Advisor Professor);
+        AG9 -- "Output" --> AG10(🛠️ Final Resource Engineer);
     end
 
-    subgraph "Output"
-        C -- "5. Generates real-time console updates" --> O(pretty_printer.py);
-        N -- "6. Consolidates final outputs" --> P{result_saver.py};
-        P -- "7. Creates multi-format reports" --> Q[🌐 Interactive HTML Report];
-        P -- " " --> R[📝 Markdown Document];
-        P -- " " --> S[📁 Raw JSON Data];
+    subgraph "Output & Reporting"
+        C -- "Throughout: Uses PrettyPrinter for console logs" --> PP(pretty_printer.py);
+        AG10 -- "Final Output" --> RS(result_saver.py);
+        RS -- "Saves results" --> F1[🌐 HTML Report];
+        RS -- "Saves results" --> F2[📝 Markdown Report];
+        RS -- "Saves results" --> F3[📁 JSON Data];
+        RS -- "Opens HTML report in browser" --> BRW[🖥️ Web Browser];
     end
 
     style A fill:#cde4ff,stroke:#6699ff,stroke-width:2px
     style B fill:#d5f5e3,stroke:#58d68d,stroke-width:2px
     style C fill:#fff2cc,stroke:#ffc300,stroke-width:2px
-    style D fill:#fadbd8,stroke:#f1948a,stroke-width:2px
-    style P fill:#e8daef,stroke:#a569bd,stroke-width:2px
-    style O fill:#e8daef,stroke:#a569bd,stroke-width:2px
-    style Q fill:#d4e6f1,stroke:#5dade2,stroke-width:2px
-    style R fill:#d4e6f1,stroke:#5dade2,stroke-width:2px
-    style S fill:#d4e6f1,stroke:#5dade2,stroke-width:2px
+    style D fill:#e8daef,stroke:#a569bd,stroke-width:2px
+    style E fill:#fadbd8,stroke:#f1948a,stroke-width:2px
+    style AG1, style AG2, style AG3, style AG4, style AG5, style AG6, style AG7, style AG8, style AG9, style AG10 fill:#fdebd0,stroke:#f5b041,stroke-width:2px
+    style PP fill:#eaf2f8,stroke:#aed6f1,stroke-width:2px
+    style RS fill:#d1f2eb,stroke:#73c6b6,stroke-width:2px
+    style F1, style F2, style F3 fill:#d4e6f1,stroke:#5dade2,stroke-width:2px
+    style BRW fill:#f9e79f,stroke:#f7dc6f,stroke-width:2px
 
 Technical Stack & Project Structure
 This project showcases expertise in building modular and scalable AI systems.
@@ -64,17 +67,24 @@ Core Technologies: Python, Autogen (Multi-Agent Framework), OpenAI/Google Gemini
 
 Key Skills: LLM Orchestration, Autonomous Workflows, System Design, Automated Reporting.
 
+**Project Structure:**
 .
-├── 📂 research_results/  # Output folder for all generated reports
+├── 📂 research_results/     # Output folder for all generated reports (HTML, JSON, Markdown)
 │   ├── html/
 │   ├── json/
 │   └── markdown/
-├── 📜 ai_system.py           # Core logic defining the 10 AI agents and their interactions
-├── 📜 main.py                # Application entry point and user interface
-├── 📜 pretty_printer.py      # Module for clear, formatted console output
-├── 📜 research_domain.py     # Defines research field classifications
-├── 📜 result_saver.py        # Handles the creation of JSON, MD, and HTML files
-└── 📜 requirements.txt       # Project dependencies
+├── 📜 ai_system.py          # Core logic: Defines the 10 AI agents, their roles, and orchestrates their interactions.
+├── 📜 main.py               # Application entry point: Handles user input and initializes the AI system.
+├── 📜 pretty_printer.py     # Console output: Formats and prints agent responses and progress updates.
+├── 📜 research_domain.py    # Data model: Defines research field classifications (Enum).
+├── 📜 result_saver.py       # File I/O: Saves analysis results to JSON, Markdown, and HTML formats. Also opens the HTML report.
+└── 📜 requirements.txt      # Dependencies: Lists necessary Python libraries (see details below).
+
+**Dependencies (`requirements.txt`):**
+The `requirements.txt` file lists all Python libraries needed to run this project. Key libraries include:
+- `pyautogen`, `autogen-agentchat`, `autogen-ext`: For building and managing the multi-agent system. `autogen-ext[openai]` specifically enables the use of OpenAI-compatible APIs like Google's Gemini.
+- `rich`: For creating rich, formatted text and tables in the console output.
+- `nest-asyncio`: To allow asyncio to run in environments like Jupyter notebooks or standard Python scripts where an event loop might already be running.
 
 Getting Started
 1. Installation
@@ -88,7 +98,7 @@ pip install -r requirements.txt
 Open main.py and set your Google Gemini API key.
 
 # main.py
-GOOGLE_API_KEY = "YOUR_API_KEY_HERE"  # <-- Paste your API key here
+GOOGLE_API_KEY = "YOUR_API_KEY_HERE"  # <-- ⭐⭐⭐ PASTE YOUR GEMINI API KEY HERE! ⭐⭐⭐
 
 3. Running the System
 Execute the main script from your terminal.
