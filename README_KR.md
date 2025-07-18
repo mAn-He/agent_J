@@ -82,7 +82,7 @@ graph TD
 
 **의존성 (`requirements.txt`):**
 `requirements.txt` 파일은 이 프로젝트를 실행하는 데 필요한 모든 Python 라이브러리를 나열합니다. 주요 라이브러리는 다음과 같습니다:
-- `pyautogen`, `autogen-agentchat`, `autogen-ext`: 멀티 에이전트 시스템 구축 및 관리를 위한 라이브러리입니다. 특히 `autogen-ext[openai]`는 Google Gemini와 같은 OpenAI 호환 API 사용을 가능하게 합니다.
+- `ag2`, `autogen-agentchat`, `autogen-ext`: 멀티 에이전트 시스템 구축 및 관리를 위한 라이브러리입니다. 특히 `autogen-ext[openai]`는 Google Gemini와 같은 OpenAI 호환 API 사용을 가능하게 합니다.
 - `rich`: 콘솔 출력에서 서식이 풍부한 텍스트와 표를 만드는 데 사용됩니다.
 - `nest-asyncio`: Jupyter 노트북이나 표준 Python 스크립트와 같이 이미 이벤트 루프가 실행 중일 수 있는 환경에서 asyncio를 실행할 수 있도록 합니다.
 

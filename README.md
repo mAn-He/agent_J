@@ -82,7 +82,7 @@ Key Skills: LLM Orchestration, Autonomous Workflows, System Design, Automated Re
 
 **Dependencies (`requirements.txt`):**
 The `requirements.txt` file lists all Python libraries needed to run this project. Key libraries include:
-- `pyautogen`, `autogen-agentchat`, `autogen-ext`: For building and managing the multi-agent system. `autogen-ext[openai]` specifically enables the use of OpenAI-compatible APIs like Google's Gemini.
+- `ag2`, `autogen-agentchat`, `autogen-ext`: For building and managing the multi-agent system. `autogen-ext[openai]` specifically enables the use of OpenAI-compatible APIs like Google's Gemini.
 - `rich`: For creating rich, formatted text and tables in the console output.
 - `nest-asyncio`: To allow asyncio to run in environments like Jupyter notebooks or standard Python scripts where an event loop might already be running.
 
