@@ -14,7 +14,7 @@ Executive Summary (프로젝트 개요)
 💡 리스크 감소 및 전략적 의사결정 지원: 잠재적 난관, 기술적 공백, 실현 가능성 등의 이슈를 기획 초기에 미리 식별하여, 기업이 더 안정적이고 성공 확률 높은 R&D 투자를 할 수 있도록 지원합니다.
 
 작동 방식 및 프로세스 (How It Works)
-본 프레임워크는 사용자의 아이디어 입력을 시작으로, 각 AI 에이전트가 이전 단계의 결과물을 이어받아 순차적으로 과업을 수행하며 결과물을 정교하게 발전시키는 파이프라인 구조로 작동합니다.
+본 프레임워크는 '워크플로우 매니저(Workflow Manager)'에 의해 제어되는 구조입니다. 사용자의 아이디어가 입력되면, 매니저는 미리 정의된 순서(도메인 분석가 → 선임 연구원 → ...)에 따라 각 AI 전문가를 순서대로 호출합니다. 이 방식은 고정된 파이프라인의 안정성은 유지하면서, 명시적인 제어를 통해 시스템의 명확성과 확장성을 높입니다.
 
 graph TD
     subgraph "입력"
@@ -22,8 +22,9 @@ graph TD
     end
 
     subgraph "시스템 코어 및 오케스트레이션"
-        B(main.py) -- "2. user_idea 및 API_KEY 확보" --> C{AdvancedAIPlusXSystem};
-        C -- "3. AI 에이전트 및 헬퍼 클래스 초기화 (PrettyPrinter, ResultSaver)" --> D[RoundRobinGroupChat];
+        B(main.py) -- "2. user_idea 및 환경 변수 기반 API_KEY 확보" --> C{AdvancedAIPlusXSystem};
+        C -- "3. AI 에이전트 및 워크플로우 매니저(select_next_agent) 정의" --> D["GroupChat + Workflow Manager"];
+        C -- "4. 워크플로우가 대화 흐름을 순차적으로 제어" --> D;
         D -- "10명 AI 에이전트 상호작용 관리" --> E[순차적 에이전트 파이프라인];
     end
 
@@ -95,10 +96,24 @@ cd jarvis-research-system
 pip install -r requirements.txt
 
 2. API 키 설정 (⭐필수⭐)
-main.py 파일을 열어 GOOGLE_API_KEY 변수에 자신의 Google Gemini API 키를 입력합니다.
+이 시스템을 사용하려면 Google Gemini API 키가 필요합니다. 아래와 같이 운영체제에 맞는 방법으로 `GOOGLE_API_KEY` 환경 변수를 설정해 주세요.
 
-# main.py
-GOOGLE_API_KEY = "YOUR_API_KEY_HERE"  # <-- ⭐⭐⭐ 발급받은 GEMINI API 키를 여기에 붙여넣으세요! ⭐⭐⭐
+**macOS / Linux:**
+```bash
+export GOOGLE_API_KEY="여기에_당신의_API_키를_입력하세요"
+```
+`.bashrc` 또는 `.zshrc` 파일에 위 줄을 추가하면 터미널 세션을 새로 시작할 때마다 자동으로 키가 설정됩니다.
+
+**Windows (Command Prompt):**
+```cmd
+set GOOGLE_API_KEY="여기에_당신의_API_키를_입력하세요"
+```
+
+**Windows (PowerShell):**
+```powershell
+$env:GOOGLE_API_KEY="여기에_당신의_API_키를_입력하세요"
+```
+Windows에서 영구적으로 환경 변수를 설정하려면 '시스템 속성'의 '환경 변수' 메뉴를 사용하세요.
 
 3. 시스템 실행
 터미널에서 아래 명령어를 입력하여 시스템을 시작합니다.

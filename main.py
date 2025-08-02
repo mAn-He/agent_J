@@ -4,9 +4,9 @@ import asyncio
 import os
 from ai_system import AdvancedAIPlusXSystem
 
-# In a real application, it's better to use environment variables.
-# 실제 애플리케이션에서는 환경 변수를 사용하는 것이 좋습니다.
-GOOGLE_API_KEY = "YOUR_API_KEY_HERE" #  중요: 여기에 당신의 Gemini API 키를 입력하세요.
+# Load the API key from environment variables for better security.
+# 보안 강화를 위해 환경 변수에서 API 키를 불러옵니다.
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 async def main():
     """
@@ -15,10 +15,11 @@ async def main():
     애플리케이션을 실행하는 메인 비동기 함수입니다.
     사용자를 위한 간단한 명령줄 인터페이스를 제공합니다.
     """
-    if GOOGLE_API_KEY == "YOUR_API_KEY_HERE":
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("!!! ERROR: Please set your GOOGLE_API_KEY in main.py !!!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    if not GOOGLE_API_KEY:
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!! ERROR: GOOGLE_API_KEY environment variable not set.               !!!")
+        print("!!! Please set the GOOGLE_API_KEY environment variable and try again. !!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         return
 
     print("🚀 Welcome to the Jarvis Research System!")
