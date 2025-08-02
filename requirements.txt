@@ -1,6 +1,6 @@
 requirements.txt
 Core autogen libraries
-pyautogen
+ag2
 autogen-agentchat
 autogen-ext
 
