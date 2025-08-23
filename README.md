@@ -68,6 +68,7 @@ Core Technologies: Python, Autogen (Multi-Agent Framework), OpenAI/Google Gemini
 Key Skills: LLM Orchestration, Autonomous Workflows, System Design, Automated Reporting.
 
 **Project Structure:**
+```
 .
 ├── 📂 research_results/     # Output folder for all generated reports (HTML, JSON, Markdown)
 │   ├── html/
@@ -79,6 +80,7 @@ Key Skills: LLM Orchestration, Autonomous Workflows, System Design, Automated Re
 ├── 📜 research_domain.py    # Data model: Defines research field classifications (Enum).
 ├── 📜 result_saver.py       # File I/O: Saves analysis results to JSON, Markdown, and HTML formats. Also opens the HTML report.
 └── 📜 requirements.txt      # Dependencies: Lists necessary Python libraries (see details below).
+```
 
 **Dependencies (`requirements.txt`):**
 The `requirements.txt` file lists all Python libraries needed to run this project. Key libraries include:

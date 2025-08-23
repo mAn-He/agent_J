@@ -70,6 +70,7 @@ graph TD
 보유 역량: LLM 오케스트레이션, 자율 워크플로우 설계, 시스템 아키텍처, 리포팅 자동화
 
 **프로젝트 구조:**
+```
 .
 ├── 📂 research_results/     # 생성된 모든 보고서(HTML, JSON, Markdown)가 저장되는 폴더
 │   ├── html/
@@ -81,6 +82,7 @@ graph TD
 ├── 📜 research_domain.py    # 데이터 모델: 연구 분야 분류(Enum) 정의
 ├── 📜 result_saver.py       # 파일 입출력: 분석 결과를 JSON, Markdown, HTML 형식으로 저장 및 HTML 보고서 열기
 └── 📜 requirements.txt      # 의존성: 필요한 Python 라이브러리 목록 (상세 내용은 아래 참조)
+```
 
 **의존성 (`requirements.txt`):**
 `requirements.txt` 파일은 이 프로젝트를 실행하는 데 필요한 모든 Python 라이브러리를 나열합니다. 주요 라이브러리는 다음과 같습니다:
