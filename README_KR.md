@@ -16,6 +16,7 @@ Executive Summary (프로젝트 개요)
 작동 방식 및 프로세스 (How It Works)
 본 프레임워크는 사용자의 아이디어 입력을 시작으로, 각 AI 에이전트가 이전 단계의 결과물을 이어받아 순차적으로 과업을 수행하며 결과물을 정교하게 발전시키는 파이프라인 구조로 작동합니다.
 
+```mermaid
 graph TD
     subgraph "입력"
         A[👤 사용자] -- "1. 연구 아이디어 제시" --> B;
@@ -59,6 +60,7 @@ graph TD
     style RS fill:#d1f2eb,stroke:#73c6b6,stroke-width:2px
     style F1, style F2, style F3 fill:#d4e6f1,stroke:#5dade2,stroke-width:2px
     style BRW fill:#f9e79f,stroke:#f7dc6f,stroke-width:2px
+```
 
 기술 스택 및 프로젝트 구조 (Tech Stack & Structure)
 본 프로젝트는 모듈화된 확장 가능한 AI 시스템 설계 역량을 보여줍니다.
