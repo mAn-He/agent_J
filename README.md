@@ -15,38 +15,38 @@ This project demonstrates the ability to architect and deploy sophisticated AI s
 
 How It Works: The Automated Collaboration Flow
 The framework operates as a sequential pipeline where each AI agent builds upon the work of the previous one, creating a coherent and progressively refined output.
-
+```mermaid
 graph TD
-    subgraph "Input"
-        A[👤 User] -- "1. Provides a single research idea" --> B;
+    subgraph "입력"
+        A[👤 사용자] -- "1. 연구 아이디어 제시" --> B;
     end
 
-    subgraph "System Core & Orchestration"
-        B(main.py) -- "2. Gets user_idea & API_KEY" --> C{AdvancedAIPlusXSystem};
-        C -- "3. Initializes AI Agents & Helper Classes (PrettyPrinter, ResultSaver)" --> D[RoundRobinGroupChat];
-        D -- "Manages interactions of 10 AI Agents" --> E[Sequential Agent Pipeline];
+    subgraph "시스템 코어 및 오케스트레이션"
+        B(main.py) -- "2. user_idea 및 API_KEY 확보" --> C{AdvancedAIPlusXSystem};
+        C -- "3. AI 에이전트 및 헬퍼 클래스 초기화 (PrettyPrinter, ResultSaver)" --> D[RoundRobinGroupChat];
+        D -- "10명 AI 에이전트 상호작용 관리" --> E[순차적 에이전트 파이프라인];
     end
 
-    subgraph "AI Agent Pipeline (Iterative Refinement)"
-        E -- "Initial Task (user_idea)" --> AG1(🔍 Domain Classifier);
-        AG1 -- "Output" --> AG2(👨‍🏫 Senior Researcher);
-        AG2 -- "Output" --> AG3(✏️ Prompt Engineer);
-        AG3 -- "Output" --> AG4(🤖 AI Specialist);
-        AG4 -- "Output" --> AG5(📚 Research Trend Analyst);
-        AG5 -- "Output" --> AG6(⚖️ Feasibility Evaluator);
-        AG6 -- "Output" --> AG7(🔧 Improvement Strategist);
-        AG7 -- "Output" --> AG8(🎯 Topic Recommender);
-        AG8 -- "Output" --> AG9(👨‍🏫 Advisor Professor);
-        AG9 -- "Output" --> AG10(🛠️ Final Resource Engineer);
+    subgraph "AI 에이전트 파이프라인 (반복적 구체화)"
+        E -- "초기 작업 (user_idea)" --> AG1(🔍 도메인 분석가);
+        AG1 -- "결과" --> AG2(👨‍🏫 선임 연구원);
+        AG2 -- "결과" --> AG3(✏️ 프롬프트 엔지니어);
+        AG3 -- "결과" --> AG4(🤖 AI 전문가);
+        AG4 -- "결과" --> AG5(📚 연구 트렌드 분석가);
+        AG5 -- "결과" --> AG6(⚖️ 타당성 평가자);
+        AG6 -- "결과" --> AG7(🔧 개선 전략가);
+        AG7 -- "결과" --> AG8(🎯 주제 추천 시스템);
+        AG8 -- "결과" --> AG9(👨‍🏫 자문 교수);
+        AG9 -- "결과" --> AG10(🛠️ 최종 리소스 엔지니어);
     end
 
-    subgraph "Output & Reporting"
-        C -- "Throughout: Uses PrettyPrinter for console logs" --> PP(pretty_printer.py);
-        AG10 -- "Final Output" --> RS(result_saver.py);
-        RS -- "Saves results" --> F1[🌐 HTML Report];
-        RS -- "Saves results" --> F2[📝 Markdown Report];
-        RS -- "Saves results" --> F3[📁 JSON Data];
-        RS -- "Opens HTML report in browser" --> BRW[🖥️ Web Browser];
+    subgraph "출력 및 보고"
+        C -- "전 과정: PrettyPrinter를 사용하여 콘솔 로그 출력" --> PP(pretty_printer.py);
+        AG10 -- "최종 결과물" --> RS(result_saver.py);
+        RS -- "결과 저장" --> F1[🌐 HTML 보고서];
+        RS -- "결과 저장" --> F2[📝 Markdown 보고서];
+        RS -- "결과 저장" --> F3[📁 JSON 데이터];
+        RS -- "브라우저에서 HTML 보고서 열기" --> BRW[🖥️ 웹 브라우저];
     end
 
     style A fill:#cde4ff,stroke:#6699ff,stroke-width:2px
@@ -59,6 +59,7 @@ graph TD
     style RS fill:#d1f2eb,stroke:#73c6b6,stroke-width:2px
     style F1, style F2, style F3 fill:#d4e6f1,stroke:#5dade2,stroke-width:2px
     style BRW fill:#f9e79f,stroke:#f7dc6f,stroke-width:2px
+```
 
 Technical Stack & Project Structure
 This project showcases expertise in building modular and scalable AI systems.
